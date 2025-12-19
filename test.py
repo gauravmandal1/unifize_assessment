@@ -144,13 +144,13 @@ async def test_tiered_discount():
 
 async def main():
    
-    await test_multiple_discount_scenario()
-
     await test_voucher_validation()
 
-    await test_with_voucher()
-
     await test_flat_discount()
+
+    await test_multiple_discount_scenario()
+
+    await test_with_voucher()
     
     await test_tiered_discount()
     

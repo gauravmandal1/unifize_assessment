@@ -16,9 +16,9 @@ class Product:
     id: str
     brand: str
     category: str
-    brand: BrandTier
     base_price: Decimal
-    current_price: Decimal  
+    current_price: Decimal
+    brand_tier: Optional[BrandTier] = None  
 
 
 @dataclass
@@ -32,14 +32,14 @@ class CartItem:
 class PaymentInfo:
     method: str  
     bank_name: Optional[str]
-    card_type: Optional[str]  # CREDIT, DEBIT
+    card_type: Optional[str]  
 
 
 @dataclass
 class CustomerProfile:
     id: str
     name: str
-    tier: str  # GOLD, SILVER, BRONZE
+    tier: str  
     total_orders: int
     applied_voucher: Optional[str] = None 
 

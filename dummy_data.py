@@ -22,7 +22,23 @@ VOUCHERS_DB = {
         'valid_until': datetime.now() + timedelta(days=30),
         'min_cart_value': Decimal('0'),
         'allowed_categories': {'T-shirts'},
-    }
+    },
+    'FLAT500': {
+        'discount_type': 'flat',  
+        'discount_value': Decimal('500'),  
+        'valid_until': datetime.now() + timedelta(days=30),
+        'min_cart_value': Decimal('2000'),  
+    },
+    'TIERED': {
+        'discount_type': 'tiered',  
+        'valid_until': datetime.now() + timedelta(days=30),
+        'min_cart_value': Decimal('0'),
+        'tiers': [  
+            {'min': Decimal('2000'), 'discount': Decimal('500')},
+            {'min': Decimal('1000'), 'discount': Decimal('200')},
+            {'min': Decimal('500'), 'discount': Decimal('100')},
+        ]
+    },
 }
 
 BANK_OFFERS_DB = {

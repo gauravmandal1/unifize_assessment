@@ -43,7 +43,6 @@ async def test_multiple_discount_scenario():
     
     
 
-
 async def test_voucher_validation():
     """Test voucher code validation"""
     print("\n" + "=" * 60)
@@ -94,6 +93,53 @@ async def test_with_voucher():
         print(f"  - {discount_name}: ₹{amount}")
     
     
+async def test_flat_discount():
+    """Test flat discount - super simple"""
+    print("\n" + "=" * 60)
+    print("TEST: Flat Discount (₹500 off)")
+    print("=" * 60)
+    
+    service = DiscountService(VOUCHERS_DB, BANK_OFFERS_DB)
+    products = get_sample_products()
+    customer = get_sample_customer()
+    customer.applied_voucher = 'FLAT500'
+    
+    # ADIDAS shoes: ₹2100
+    cart_items = [CartItem(product=products[1], quantity=1, size="10")]
+    
+    result = await service.calculate_cart_discounts(cart_items, customer)
+    
+    print(f"\nOriginal Price: ₹{result.original_price}")
+    print(f"After Brand Discount: ₹2100")
+    print(f"After Flat ₹500: ₹{result.final_price}")
+    print(f"\nExpected: ₹1600")
+    
+    assert result.final_price == Decimal('1600')
+
+
+async def test_tiered_discount():
+    """Test tiered discount - also simple"""
+    print("\n" + "=" * 60)
+    print("TEST: Tiered Discount")
+    print("=" * 60)
+    
+    service = DiscountService(VOUCHERS_DB, BANK_OFFERS_DB)
+    products = get_sample_products()
+    customer = get_sample_customer()
+    customer.applied_voucher = 'TIERED'
+    
+    # 2 PUMA T-shirts: 2 × ₹600 = ₹1200
+    cart_items = [CartItem(product=products[0], quantity=2, size="M")]
+    
+    result = await service.calculate_cart_discounts(cart_items, customer)
+    
+    print(f"\nCart Total: ₹1200")
+    print(f"Tier Matched: ₹1000+ → ₹200 off")
+    print(f"Final Price: ₹{result.final_price}")
+    print(f"\nExpected: ₹1000")
+    
+    assert result.final_price == Decimal('1000')
+
 
 
 async def main():
@@ -103,6 +149,10 @@ async def main():
     await test_voucher_validation()
 
     await test_with_voucher()
+
+    await test_flat_discount()
+    
+    await test_tiered_discount()
     
 
 

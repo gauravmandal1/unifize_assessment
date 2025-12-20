@@ -81,15 +81,6 @@ Applied Discounts:
 
 Simply extend `_calculate_voucher_discount()` or `validate_discount_code()` methods.
 
----
-
-**Key Strategies**
-1. **Horizontal Scaling**: Stateless service, deploy multiple instances
-2. **Caching**: Redis for discount rules (95%+ hit ratio)
-3. **Database**: Indexes on codes/brands, read replicas
-4. **Async**: Non-blocking I/O, parallel processing
-5. **Monitoring**: Track latency, error rates, cache hits
----
 
 ## Design Decisions
 

@@ -2,14 +2,6 @@
 
 A discount calculation system for fashion e-commerce that handles brand discounts, voucher codes, and bank offers with proper 
 
-## Features
-✅ Multiple discount types (brand, category, voucher, bank offers)  
-✅ Proper discount stacking order  
-✅ Decimal precision for currency  
-✅ Comprehensive validation  
-✅ Extensible architecture  
-
----
 
 ## How It Works
 
@@ -55,7 +47,6 @@ Final Price: ₹540
 Applied Discounts:
   - Brand/Category Discount: ₹400
   - Bank Offer (ICICI): ₹60
-✅ Test Passed!
 ```
 
 ---
@@ -114,17 +105,6 @@ Future-proof for DB/API calls, better concurrency
 **4. Why Validate First?**  
 Fail fast, clear errors, prevent partial application
 
----
-
-## Edge Cases Handled
-✅ Negative prices (max with 0)  
-✅ Expired vouchers  
-✅ Minimum cart values  
-✅ Tier restrictions  
-✅ Brand exclusions  
-✅ Max discount caps  
-
----
 
 ## Test Scenarios
 
@@ -139,7 +119,6 @@ Fail fast, clear errors, prevent partial application
 - Redis caching layer
 - Analytics dashboard
 - Gift cards & referral system
-- ML-based personalized offers
 
 ---
 
